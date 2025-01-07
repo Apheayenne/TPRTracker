@@ -36,9 +36,18 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    public void SetGlitchedLogic(bool isOn)
+    public void SetLogic(int index)
     {
-        LogicManager.Instance.SettingsStatus["GlitchedLogic"] = isOn;
+        LogicManager.Instance.SettingsStatus["GlitchlessLogic"] = false;
+        LogicManager.Instance.SettingsStatus["GlitchedLogic"] = false;
+        LogicManager.Instance.SettingsStatus["NoLogic"] = false;
+
+        if (index == 0)
+            LogicManager.Instance.SettingsStatus["GlitchlessLogic"] = true;
+        else if (index == 1)
+            LogicManager.Instance.SettingsStatus["GlitchedLogic"] = true;
+        else
+            LogicManager.Instance.SettingsStatus["NoLogic"] = true;
     }
 
     public void SetHCRequirements(int index)

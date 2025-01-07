@@ -658,7 +658,7 @@ public class SpoilerManager : MonoBehaviour
     public Toggle AutoReset;
 
     [Header("Settings Toggles/Dropdowns")]
-    public Toggle GlitchedLogic;
+    public TMP_Dropdown Logic;
     public TMP_Dropdown HyruleCastleRequirements;
     public TMP_Dropdown PalaceOfTwilightRequirements;
     public TMP_Dropdown FaronWoodsLogic;
@@ -1937,8 +1937,14 @@ public class SpoilerManager : MonoBehaviour
         Debug.Log("Settings Reset Done");
 
         Debug.Log("Glitched");
-        if (spoilerLog.settings.logicRules == "Glitched")
-            GlitchedLogic.isOn = true;
+        if (spoilerLog.settings.logicRules == "Glitchless")
+            Logic.value = 0;
+        else if (spoilerLog.settings.logicRules == "Glitched")
+            Logic.value = 1;
+        else if (spoilerLog.settings.logicRules == "No_Logic")
+            Logic.value = 2;
+        else
+            Debug.LogWarning("Logic didn't match");
 
         Debug.Log("HC");
         if (spoilerLog.settings.castleRequirements == "All_Dungeons")
